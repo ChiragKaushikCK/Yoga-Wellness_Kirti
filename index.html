@@ -1,0 +1,1149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yoga & Wellness Center | Wellness Redefined</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary: #5d8a7a;
+            --primary-light: #7ba898;
+            --primary-dark: #4a6f62;
+            --accent: #d4af87;
+            --light: #f8f9fa;
+            --dark: #2c3e3a;
+            --text: #333;
+            --text-light: #666;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: var(--text);
+            background-color: var(--light);
+            overflow-x: hidden;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        section {
+            padding: 80px 0;
+        }
+        
+        h1, h2, h3, h4 {
+            font-weight: 300;
+            line-height: 1.3;
+            margin-bottom: 1rem;
+        }
+        
+        h2 {
+            font-size: 2.2rem;
+            color: var(--primary);
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+        
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--accent);
+        }
+        
+        p {
+            margin-bottom: 1rem;
+            color: var(--text-light);
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-accent {
+            background-color: var(--accent);
+        }
+        
+        .btn-accent:hover {
+            background-color: #c19a6b;
+        }
+        
+        /* Header section */
+        header {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                        url('https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 0 20px;
+        }
+        
+        header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+        }
+        
+        header p {
+            font-size: 1.5rem;
+            max-width: 600px;
+            margin-bottom: 30px;
+            color: white;
+        }
+        
+        /* Navigation */
+        nav {
+            position: sticky;
+            top: 0;
+            background-color: white;
+            z-index: 1000;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 300;
+            color: var(--primary);
+            text-decoration: none;
+        }
+        
+        .logo span {
+            font-weight: 600;
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-item {
+            position: relative;
+            margin: 0 5px;
+        }
+        
+        .nav-link {
+            display: block;
+            padding: 10px 20px;
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            border-radius: 30px;
+        }
+        
+        .nav-link:hover {
+            color: var(--primary);
+            background-color: rgba(93, 138, 122, 0.1);
+        }
+        
+        .nav-link.active {
+            color: var(--primary);
+            background-color: rgba(93, 138, 122, 0.1);
+        }
+        
+        .dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 220px;
+            background: white;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s;
+            z-index: 1001;
+        }
+        
+        .nav-item:hover .dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .dropdown-link {
+            display: block;
+            padding: 12px 20px;
+            color: var(--text);
+            text-decoration: none;
+            border-bottom: 1px solid #f0f0f0;
+            transition: all 0.3s;
+        }
+        
+        .dropdown-link:last-child {
+            border-bottom: none;
+        }
+        
+        .dropdown-link:hover {
+            color: var(--primary);
+            background-color: rgba(93, 138, 122, 0.1);
+            padding-left: 25px;
+        }
+        
+        .mobile-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--primary);
+        }
+        
+        /* About section */
+        .about-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .about-item {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+            text-align: center;
+        }
+        
+        .about-item:hover {
+            transform: translateY(-10px);
+        }
+        
+        .about-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        .about-item h3 {
+            margin-bottom: 15px;
+            color: var(--primary);
+            font-size: 1.5rem;
+        }
+        
+        /* Programs section */
+        .programs-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .program-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+        
+        .program-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .program-img {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        
+        .program-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.7));
+            display: flex;
+            align-items: flex-end;
+            padding: 20px;
+        }
+        
+        .program-overlay h3 {
+            color: white;
+            font-size: 1.5rem;
+        }
+        
+        .program-content {
+            padding: 25px;
+        }
+        
+        .program-features {
+            list-style: none;
+            margin: 20px 0;
+        }
+        
+        .program-features li {
+            padding: 8px 0;
+            border-bottom: 1px solid #f0f0f0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .program-features li:last-child {
+            border-bottom: none;
+        }
+        
+        .program-features i {
+            color: var(--primary);
+            margin-right: 10px;
+        }
+        
+        /* Gallery section */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        
+        .gallery-item {
+            height: 250px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 10px;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.03);
+        }
+        
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: all 0.3s;
+        }
+        
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+        
+        .gallery-overlay i {
+            color: white;
+            font-size: 2rem;
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            background: linear-gradient(rgba(93, 138, 122, 0.9), rgba(93, 138, 122, 0.9)), 
+                        url('https://images.unsplash.com/photo-1545389336-cf090694435e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+            text-align: center;
+        }
+        
+        .testimonials h2 {
+            color: white;
+        }
+        
+        .testimonials h2::after {
+            background-color: var(--accent);
+        }
+        
+        .testimonial-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .testimonial {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 10px;
+            margin: 20px 0;
+            backdrop-filter: blur(5px);
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .author-img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 15px;
+            border: 3px solid var(--accent);
+        }
+        
+        .author-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .author-info h4 {
+            margin-bottom: 5px;
+        }
+        
+        .author-info p {
+            color: rgba(255, 255, 255, 0.8);
+            margin: 0;
+        }
+        
+        /* Contact section */
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background-color: rgba(93, 138, 122, 0.1);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 20px;
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
+        
+        .contact-details h3 {
+            margin-bottom: 5px;
+            color: var(--primary);
+        }
+        
+        .contact-form {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        
+        .form-control:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(93, 138, 122, 0.2);
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 60px 0 20px;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-col h3 {
+            color: white;
+            margin-bottom: 25px;
+            font-size: 1.3rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--accent);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent);
+            padding-left: 5px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--accent);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+        
+        /* Back to top button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+            z-index: 999;
+        }
+        
+        .back-to-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-5px);
+        }
+        
+        /* Responsive styles */
+        @media (max-width: 992px) {
+            header h1 {
+                font-size: 2.8rem;
+            }
+            
+            header p {
+                font-size: 1.3rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-toggle {
+                display: block;
+            }
+            
+            .nav-menu {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 80%;
+                height: calc(100vh - 70px);
+                background: white;
+                flex-direction: column;
+                align-items: center;
+                padding-top: 40px;
+                transition: all 0.5s;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            }
+            
+            .nav-menu.active {
+                left: 0;
+            }
+            
+            .nav-item {
+                margin: 10px 0;
+                width: 100%;
+                text-align: center;
+            }
+            
+            .nav-link {
+                padding: 15px;
+                border-radius: 0;
+            }
+            
+            .dropdown {
+                position: static;
+                width: 100%;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                box-shadow: none;
+                display: none;
+            }
+            
+            .nav-item:hover .dropdown {
+                display: block;
+            }
+            
+            header h1 {
+                font-size: 2.2rem;
+            }
+            
+            header p {
+                font-size: 1.1rem;
+            }
+            
+            section {
+                padding: 60px 0;
+            }
+            
+            h2 {
+                font-size: 1.8rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .container {
+                width: 95%;
+            }
+            
+            .gallery {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+            
+            .gallery-item {
+                height: 150px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <h1>Yoga & Wellness Center</h1>
+        <p>Wellness Redefined, Come and Thrive.</p>
+        <a href="#about" class="btn btn-accent">Discover More</a>
+    </header>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="container nav-container">
+            <a href="#" class="logo">Yoga<span>Wellness</span></a>
+            
+            <div class="mobile-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="#home" class="nav-link active">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#about" class="nav-link">About</a>
+                    <div class="dropdown">
+                        <a href="#purpose" class="dropdown-link">Our Purpose</a>
+                        <a href="#benefits" class="dropdown-link">Benefits</a>
+                        <a href="#instructors" class="dropdown-link">Our Instructors</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="#programs" class="nav-link">Classes</a>
+                    <div class="dropdown">
+                        <a href="#hatha" class="dropdown-link">Hatha Yoga</a>
+                        <a href="#power" class="dropdown-link">Power Yoga</a>
+                        <a href="#meditation" class="dropdown-link">Meditation</a>
+                        <a href="#pranayama" class="dropdown-link">Pranayama</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="#gallery" class="nav-link">Gallery</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#testimonials" class="nav-link">Testimonials</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#contact" class="nav-link">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <h2>About Our Center</h2>
+            <div class="about-content">
+                <div class="about-item">
+                    <div class="about-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3>Our Purpose</h3>
+                    <p>We are dedicated to creating a sanctuary where individuals can discover the transformative power of yoga, meditation, and mindful living. Our center provides a welcoming space for people of all ages and abilities to explore holistic wellness practices.</p>
+                    <a href="#purpose" class="btn">Learn More</a>
+                </div>
+                <div class="about-item">
+                    <div class="about-icon">
+                        <i class="fas fa-spa"></i>
+                    </div>
+                    <h3>Benefits of Practice</h3>
+                    <p>Yoga, meditation, and breathing practices offer numerous benefits including reduced stress, improved flexibility, enhanced mental clarity, better sleep, and increased overall well-being. Regular practice helps create balance between mind, body, and spirit.</p>
+                    <a href="#benefits" class="btn">Discover Benefits</a>
+                </div>
+                <div class="about-item">
+                    <div class="about-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Expert Instructors</h3>
+                    <p>Our team consists of certified yoga instructors with years of experience and specialized training. Each instructor brings unique expertise while sharing a common commitment to helping you achieve your wellness goals in a supportive environment.</p>
+                    <a href="#instructors" class="btn">Meet Our Team</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Programs Section -->
+    <section id="programs">
+        <div class="container">
+            <h2>Our Programs</h2>
+            <div class="programs-container">
+                <div class="program-card">
+                    <div class="program-img" style="background-image: url('https://images.unsplash.com/photo-1599901860904-17e6ed7083a0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');">
+                        <div class="program-overlay">
+                            <h3>Hatha Yoga</h3>
+                        </div>
+                    </div>
+                    <div class="program-content">
+                        <p>A gentle form of yoga focusing on basic postures, breathing techniques, and meditation. Perfect for beginners and those seeking a slower-paced practice.</p>
+                        <ul class="program-features">
+                            <li><i class="fas fa-check"></i> Suitable for all levels</li>
+                            <li><i class="fas fa-check"></i> Focus on alignment</li>
+                            <li><i class="fas fa-check"></i> 60-minute sessions</li>
+                            <li><i class="fas fa-check"></i> Small class sizes</li>
+                        </ul>
+                        <a href="#" class="btn">Join Class</a>
+                    </div>
+                </div>
+                <div class="program-card">
+                    <div class="program-img" style="background-image: url('https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');">
+                        <div class="program-overlay">
+                            <h3>Power Yoga</h3>
+                        </div>
+                    </div>
+                    <div class="program-content">
+                        <p>A dynamic, fitness-based approach to yoga that builds strength, flexibility, and stamina. This vigorous practice links breath with movement.</p>
+                        <ul class="program-features">
+                            <li><i class="fas fa-check"></i> Intermediate to advanced</li>
+                            <li><i class="fas fa-check"></i> Builds strength & stamina</li>
+                            <li><i class="fas fa-check"></i> 75-minute sessions</li>
+                            <li><i class="fas fa-check"></i> Energizing flow</li>
+                        </ul>
+                        <a href="#" class="btn">Join Class</a>
+                    </div>
+                </div>
+                <div class="program-card">
+                    <div class="program-img" style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5KqXEK6DNe7FvgOLMvBgpYiU8MBUgiJAitg&s');">
+                        <div class="program-overlay">
+                            <h3>Meditation</h3>
+                        </div>
+                    </div>
+                    <div class="program-content">
+                        <p>Learn various meditation techniques to calm the mind, reduce stress, and enhance mindfulness. Suitable for all experience levels.</p>
+                        <ul class="program-features">
+                            <li><i class="fas fa-check"></i> All experience levels</li>
+                            <li><i class="fas fa-check"></i> Stress reduction</li>
+                            <li><i class="fas fa-check"></i> 45-minute sessions</li>
+                            <li><i class="fas fa-check"></i> Guided techniques</li>
+                        </ul>
+                        <a href="#" class="btn">Join Class</a>
+                    </div>
+                </div>
+                <div class="program-card">
+                    <div class="program-img" style="background-image: url('https://images.unsplash.com/photo-1545389336-cf090694435e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');">
+                        <div class="program-overlay">
+                            <h3>Pranayama</h3>
+                        </div>
+                    </div>
+                    <div class="program-content">
+                        <p>Breathing exercises that help regulate energy flow, improve lung capacity, and promote relaxation. Essential for balancing the nervous system.</p>
+                        <ul class="program-features">
+                            <li><i class="fas fa-check"></i> Breathing techniques</li>
+                            <li><i class="fas fa-check"></i> Energy regulation</li>
+                            <li><i class="fas fa-check"></i> 50-minute sessions</li>
+                            <li><i class="fas fa-check"></i> Relaxation focus</li>
+                        </ul>
+                        <a href="#" class="btn">Join Class</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery">
+        <div class="container">
+            <h2>Image Gallery</h2>
+            <div class="gallery">
+                <div class="gallery-item" style="background-image: url('https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+                <div class="gallery-item" style="background-image: url('https://images.unsplash.com/photo-1599901860904-17e6ed7083a0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+                <div class="gallery-item" style="background-image: url('https://images.unsplash.com/photo-1506126613408-eca07ce68773?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+                <div class="gallery-item" style="background-image: url('data:image/jpeg;base64,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');">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+                <div class="gallery-item" style="background-image: url('https://c.ndtvimg.com/2021-12/7lftbj38_yoga_625x300_15_December_21.jpg');">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+                <div class="gallery-item" style="background-image: url('https://images.unsplash.com/photo-1575052814086-f385e2e2ad1b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+                <div class="gallery-item" style="background-image: url('https://static.toiimg.com/photo/121544906.cms');">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+                <div class="gallery-item" style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQADljsNZYDKYeIC9NkBdM14eD1HObJJI-RAg&s');">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <h2>What Our Students Say</h2>
+            <div class="testimonial-container">
+                <div class="testimonial">
+                    <p class="testimonial-text">"The Yoga & Wellness Center has transformed my life. I've been practicing here for six months and have noticed significant improvements in my flexibility, strength, and mental clarity. The instructors are knowledgeable and supportive."</p>
+                    <div class="testimonial-author">
+                        <div class="author-img">
+                            <img src="https://images.unsplash.com/photo-1664871475935-39a9b861514f?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bmljZSUyMGd1eXxlbnwwfHwwfHx8MA%3D%3D" alt="Mr. Ajay">
+                        </div>
+                        <div class="author-info">
+                            <h4>Mr. Ajay</h4>
+                            <p>Yoga Student</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial">
+                    <p class="testimonial-text">"As a beginner, I was nervous about starting yoga, but the welcoming environment and patient instructors made me feel comfortable right away. The meditation classes have been particularly helpful for managing my stress."</p>
+                    <div class="testimonial-author">
+                        <div class="author-img">
+                            <img src="data:image/jpeg;base64,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" alt="Ms. Sara">
+                        </div>
+                        <div class="author-info">
+                            <h4>Ms. Sara</h4>
+                            <p>Meditation Student</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <h2>Contact Us</h2>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Our Location</h3>
+                            <p>202,Pauli<br>Jind, Haryana(126101)</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Phone Number</h3>
+                            <p>+91-7056725684</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Email Address</h3>
+                            <p>kirtikaushik074@gmail.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Opening Hours</h3>
+                            <p>Monday - Friday: 6am - 9pm<br>Saturday - Sunday: 7am - 7pm</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" class="form-control" placeholder="Your Email" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Subject">
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control" placeholder="Your Message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-col">
+                    <h3>Yoga Wellness</h3>
+                    <p>Dedicated to helping you find balance, peace, and wellness through the practice of yoga and meditation.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#programs">Our Programs</a></li>
+                        <li><a href="#gallery">Gallery</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Programs</h3>
+                    <ul class="footer-links">
+                        <li><a href="#hatha">Hatha Yoga</a></li>
+                        <li><a href="#power">Power Yoga</a></li>
+                        <li><a href="#meditation">Meditation</a></li>
+                        <li><a href="#pranayama">Pranayama</a></li>
+                        <li><a href="#workshops">Workshops</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Contact Info</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt"></i> 202,Pauli, Jind, Haryana(126101)</li>
+                        <li><i class="fas fa-phone"></i> +91-7056725684</li>
+                        <li><i class="fas fa-envelope"></i> kirtikaushik074@gmail.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Yoga & Wellness Center. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to top button -->
+    <a href="#" class="back-to-top">
+        <i class="fas fa-chevron-up"></i>
+    </a>
+
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.mobile-toggle').addEventListener('click', function() {
+            document.querySelector('.nav-menu').classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function() {
+                document.querySelector('.nav-menu').classList.remove('active');
+            });
+        });
+
+        // Back to top button
+        window.addEventListener('scroll', function() {
+            const backToTop = document.querySelector('.back-to-top');
+            if (window.pageYOffset > 300) {
+                backToTop.classList.add('active');
+            } else {
+                backToTop.classList.remove('active');
+            }
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Set active navigation link based on scroll position
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= sectionTop - 100) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
